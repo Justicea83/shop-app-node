@@ -1,0 +1,27 @@
+<main>
+    <div class="grid">
+        {{#each products}}
+            <article class="card product-item">
+                <header class="card__header">
+                    <h1 class="product__title">{{this.title}}</h1>
+                </header>
+                <div class="card__image">
+                    <img
+                            src={{this.imageUrl}}
+                            alt="A Book">
+                </div>
+                <div class="card__content">
+                    <h2 class="product__price">${{this.price}}</h2>
+                    <p class="product__description">{{this.description}}</p>
+                </div>
+                <div class="card__actions">
+                    <a href={{concat '/admin/edit-product/' this.id}} class="btn">Edit</a>
+                    <form action="/admin/delete-product" method="POST">
+                        <input type="hidden" name="productId" value={{this.id}}>
+                        <button type="submit" class="btn">Delete</button>
+                    </form>
+                </div>
+            </article>
+        {{/each}}
+    </div>
+</main>
